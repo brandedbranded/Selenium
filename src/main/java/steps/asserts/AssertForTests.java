@@ -1,14 +1,21 @@
 package steps.asserts;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.Duration;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
-
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AssertForTests {
+
     public static void checkAlertText(WebDriver driver, String expectedText) {
         Alert alert = driver.switchTo().alert();
         assertEquals(expectedText, alert.getText());
@@ -23,7 +30,9 @@ public class AssertForTests {
         }
     }
 
-    public static void checkTextContainsOnPage(WebDriver driver, String expectedText) {
+    public static void checkTextContainsOnPage(WebDriver driver, String expectedText)
+        throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
         assertTrue(driver.getPageSource().contains(expectedText));
     }
 
@@ -42,7 +51,33 @@ public class AssertForTests {
         assertNotEquals(window1, driver.getWindowHandle());
     }
 
-    public static void checkRedirectedBack(WebDriver driver, String window1) {
+    public static void checkRedirectedToFirstWindow(WebDriver driver, String window1) {
         assertEquals(driver.getWindowHandle(), window1);
+    }
+
+    public static void verifyTextOnElement(String expectedText, By element, WebDriver driver)
+        throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
+        assertTrue(driver.findElement(element).getText().contains(expectedText));
+    }
+
+    public static void verifyRedirectToHomePage(String url, WebDriver driver) {
+        assertTrue(
+            driver.findElement(By.xpath("//base[@href]")).getAttribute("href").contains(url));
+    }
+
+    public static String getNameOfItem(By element, WebDriver driver) {
+        return driver.findElement(element).getText().substring(2);
+    }
+
+    public static void verifyElementIsClickable(By element, WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public static void equalityOfAmount(String c, String c1) {
+        assertEquals(c,c1);
     }
 }

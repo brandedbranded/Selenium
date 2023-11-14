@@ -11,10 +11,11 @@ import static steps.task_6_5_3.NewWindowSteps.closeActiveWindowAndSwitchBack;
 import static steps.task_6_5_3.NewWindowSteps.openNewWindow;
 
 public class NewWindowTest extends BaseTest {
+
     @Test
     @DisplayName("Открытие нового окна")
     @Description("Скрипт переключается между вкладками и закрывает новую вкладку")
-    public void newWindowTest() {
+    public void newWindowTest() throws InterruptedException {
         openBrowser(NEW_WINDOW_PAGE);
 
         String window1 = driver.getWindowHandle();
@@ -24,6 +25,6 @@ public class NewWindowTest extends BaseTest {
         checkRedirectedToNewWindow(driver, window1);
         checkTextContainsOnPage(driver, expectedText);
         closeActiveWindowAndSwitchBack(driver, window1);
-        checkRedirectedBack(driver, window1);
+        checkRedirectedToFirstWindow(driver, window1);
     }
 }

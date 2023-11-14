@@ -13,7 +13,7 @@ public class FrameTest extends BaseTest {
     @Test
     @DisplayName("Взаимодействие с элементами внутри фрейма")
     @Description("Введенный текст оформляется жирным шрифтом, браузер закрывается")
-    public void framesTest() {
+    public void framesTest() throws InterruptedException {
         openBrowser(FRAMES_PAGE);
         goToIFrame(driver);
         printTextInFrame(driver);
