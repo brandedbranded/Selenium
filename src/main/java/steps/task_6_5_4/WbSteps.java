@@ -1,10 +1,9 @@
 package steps.task_6_5_4;
 
-import static pages.task_6_5_4.WbPageElements.searchLine;
+import static pages.task_6_5_4.SearchPageElements.searchLine;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -15,33 +14,42 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WbSteps {
 
-    public static void searchForItem(WebDriver driver, String item) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
+    public static WebDriverWait driverWait(WebDriver driver) {
+        return new WebDriverWait(driver, Duration.ofSeconds(4));
+    }
+
+    public static void searchForItem(WebDriver driver, String item) {
+        WebDriverWait wait = driverWait(driver);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(searchLine)));
         driver.findElement(searchLine).sendKeys(item + Keys.ENTER);
-        TimeUnit.SECONDS.sleep(1);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//body"))));
     }
 
     public static void clickOn(By element, WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        WebDriverWait wait = driverWait(driver);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//body"))));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         driver.findElement(element).click();
     }
 
-    public static void sendTextToInput(By element, String text, WebDriver driver)
-        throws InterruptedException {
+    public static void sendTextToInput(By element, String text, WebDriver driver) {
+        WebDriverWait wait = driverWait(driver);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//body"))));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
         driver.findElement(element).clear();
         driver.findElement(element).sendKeys(text);
-        TimeUnit.SECONDS.sleep(2);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//body"))));
     }
 
-    public static String getTextFromElement(By element, WebDriver driver)
-        throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
+    public static String getTextFromElement(By element, WebDriver driver) {
+        WebDriverWait wait = driverWait(driver);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
         return driver.findElement(element).getText();
     }
 
-    public static void moveToElement(By element, WebDriver driver) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(2);
+    public static void moveToElement(By element, WebDriver driver) {
+        WebDriverWait wait = driverWait(driver);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
         WebElement element1 = driver.findElement(element);
         Actions actions = new Actions(driver);
         actions

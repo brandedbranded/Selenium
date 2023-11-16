@@ -1,49 +1,51 @@
 package task_6_5_4_Test;
 
 import static common.Urls.WILDBERRIES_PAGE;
-import static pages.task_6_5_4.WbPageElements.aboutPointAddress;
-import static pages.task_6_5_4.WbPageElements.addToBasket;
-import static pages.task_6_5_4.WbPageElements.addressBtn;
-import static pages.task_6_5_4.WbPageElements.allFiltres;
-import static pages.task_6_5_4.WbPageElements.basketBtn;
-import static pages.task_6_5_4.WbPageElements.brandApple;
-import static pages.task_6_5_4.WbPageElements.brandOfFirstItem;
-import static pages.task_6_5_4.WbPageElements.catalogTitle;
-import static pages.task_6_5_4.WbPageElements.chooseAddressBtn;
-import static pages.task_6_5_4.WbPageElements.counterAboveBasket;
-import static pages.task_6_5_4.WbPageElements.crossBtn;
-import static pages.task_6_5_4.WbPageElements.electronicsBtn;
-import static pages.task_6_5_4.WbPageElements.expectedAmountOfItems;
-import static pages.task_6_5_4.WbPageElements.filterBtn;
-import static pages.task_6_5_4.WbPageElements.filterForItems;
-import static pages.task_6_5_4.WbPageElements.filterPath;
-import static pages.task_6_5_4.WbPageElements.firstFoundAddress;
-import static pages.task_6_5_4.WbPageElements.firstVacuum;
-import static pages.task_6_5_4.WbPageElements.foundItems;
-import static pages.task_6_5_4.WbPageElements.homeAppliancesBtn;
-import static pages.task_6_5_4.WbPageElements.householdBtn;
-import static pages.task_6_5_4.WbPageElements.laptops;
-import static pages.task_6_5_4.WbPageElements.laptopsAndPc;
-import static pages.task_6_5_4.WbPageElements.lessThan3DaysBtn;
-import static pages.task_6_5_4.WbPageElements.listOfFiltres;
-import static pages.task_6_5_4.WbPageElements.nameOfItem;
-import static pages.task_6_5_4.WbPageElements.orderBtn;
-import static pages.task_6_5_4.WbPageElements.priceInsideBasket;
-import static pages.task_6_5_4.WbPageElements.priceMax;
-import static pages.task_6_5_4.WbPageElements.priceMin;
-import static pages.task_6_5_4.WbPageElements.priceOfItem;
-import static pages.task_6_5_4.WbPageElements.screen133;
-import static pages.task_6_5_4.WbPageElements.searchBoxInAddress;
-import static pages.task_6_5_4.WbPageElements.searchLine;
-import static pages.task_6_5_4.WbPageElements.showItemsWithFiltres;
-import static pages.task_6_5_4.WbPageElements.sortBtn;
-import static pages.task_6_5_4.WbPageElements.sumPriceInBasket;
-import static pages.task_6_5_4.WbPageElements.vacuums;
-import static pages.task_6_5_4.WbPageElements.visibleAddressOfChosenPoint;
+import static pages.task_6_5_4.AddToCartPageElements.addToBasket;
+import static pages.task_6_5_4.AddToCartPageElements.basketBtn;
+import static pages.task_6_5_4.AddToCartPageElements.catalogTitle;
+import static pages.task_6_5_4.AddToCartPageElements.counterAboveBasket;
+import static pages.task_6_5_4.AddToCartPageElements.filterBtn;
+import static pages.task_6_5_4.AddToCartPageElements.filterPath;
+import static pages.task_6_5_4.AddToCartPageElements.firstVacuum;
+import static pages.task_6_5_4.AddToCartPageElements.homeAppliancesBtn;
+import static pages.task_6_5_4.AddToCartPageElements.householdBtn;
+import static pages.task_6_5_4.AddToCartPageElements.nameOfItem;
+import static pages.task_6_5_4.AddToCartPageElements.orderBtn;
+import static pages.task_6_5_4.AddToCartPageElements.priceInsideBasket;
+import static pages.task_6_5_4.AddToCartPageElements.priceOfItem;
+import static pages.task_6_5_4.AddToCartPageElements.sumPriceInBasket;
+import static pages.task_6_5_4.AddToCartPageElements.vacuums;
+import static pages.task_6_5_4.CityChangePageElements.aboutPointAddress;
+import static pages.task_6_5_4.CityChangePageElements.addressBtn;
+import static pages.task_6_5_4.CityChangePageElements.chooseAddressBtn;
+import static pages.task_6_5_4.CityChangePageElements.firstFoundAddress;
+import static pages.task_6_5_4.CityChangePageElements.searchBoxInAddress;
+import static pages.task_6_5_4.CityChangePageElements.visibleAddressOfChosenPoint;
+import static pages.task_6_5_4.FiltresPageElements.allFiltres;
+import static pages.task_6_5_4.FiltresPageElements.brandApple;
+import static pages.task_6_5_4.FiltresPageElements.electronicsBtn;
+import static pages.task_6_5_4.FiltresPageElements.expectedAmountOfItems;
+import static pages.task_6_5_4.FiltresPageElements.laptops;
+import static pages.task_6_5_4.FiltresPageElements.laptopsAndPc;
+import static pages.task_6_5_4.FiltresPageElements.lessThan3DaysBtn;
+import static pages.task_6_5_4.FiltresPageElements.listOfFiltres;
+import static pages.task_6_5_4.FiltresPageElements.priceMax;
+import static pages.task_6_5_4.FiltresPageElements.priceMin;
+import static pages.task_6_5_4.FiltresPageElements.screen133;
+import static pages.task_6_5_4.FiltresPageElements.showItemsWithFiltres;
+import static pages.task_6_5_4.FiltresPageElements.titleAfterSearch;
+import static pages.task_6_5_4.SearchPageElements.brandOfFirstItem;
+import static pages.task_6_5_4.SearchPageElements.crossBtn;
+import static pages.task_6_5_4.SearchPageElements.filterForItems;
+import static pages.task_6_5_4.SearchPageElements.foundItems;
+import static pages.task_6_5_4.SearchPageElements.searchLine;
+import static pages.task_6_5_4.SearchPageElements.sortBtn;
 import static steps.asserts.AssertForTests.checkTextContainsOnPage;
 import static steps.asserts.AssertForTests.equalityOfAmount;
 import static steps.asserts.AssertForTests.getNameOfItem;
 import static steps.asserts.AssertForTests.verifyElementIsClickable;
+import static steps.asserts.AssertForTests.verifyPriceOnElement;
 import static steps.asserts.AssertForTests.verifyRedirectToHomePage;
 import static steps.asserts.AssertForTests.verifyTextOnElement;
 import static steps.task_6_5_4.WbSteps.clickOn;
@@ -70,7 +72,7 @@ public class WbTest extends BaseTest {
     @Test
     @DisplayName("Работа с поисковой строкой")
     @Description("Присутствует текст Iphone 13. Первый фильтр - iphone 13. Применен фильтр По популярности. У первого устройства из списка бренд - Apple.")
-    public void searchForItemTest() throws InterruptedException {
+    public void searchForItemTest() {
         String item = "Iphone 13";
 
         clickOn(searchLine, driver);
@@ -89,7 +91,7 @@ public class WbTest extends BaseTest {
     @Test
     @DisplayName("Смена города")
     @Description("Адрес пункта выдачи совпадает с тем адресом, что был предложен в списке адресов. Отображается адрес пункта выдачи.")
-    public void changeCityTest() throws InterruptedException {
+    public void changeCityTest() {
         clickOn(addressBtn, driver);
         sendTextToInput(searchBoxInAddress, "Санкт-Петербург" + Keys.ENTER, driver);
 
@@ -107,7 +109,7 @@ public class WbTest extends BaseTest {
     @Test
     @DisplayName("Добавление товара в избранное")
     @Description("Товар добавляется в избранное, счетчик изменяется")
-    public void addItemToFavorite() throws InterruptedException {
+    public void addItemToFavorite() {
         clickOn(filterBtn, driver);
         moveToElement(householdBtn, driver);
         clickOn(homeAppliancesBtn, driver);
@@ -128,22 +130,21 @@ public class WbTest extends BaseTest {
 
         clickOn(basketBtn, driver);
 
-        verifyTextOnElement(itemPrice, priceInsideBasket, driver);
+        verifyPriceOnElement(itemPrice, priceInsideBasket, driver);
         checkTextContainsOnPage(driver, nameItem);
-        verifyTextOnElement(itemPrice, sumPriceInBasket, driver);
+        verifyPriceOnElement(itemPrice, sumPriceInBasket, driver);
         verifyElementIsClickable(orderBtn, driver);
     }
 
     @Test
     @DisplayName("Работа с фильтрами")
     @Description("Фильтр активен, фильтр отображается на странице, есть кнопка Сбросить всё")
-    public void useFiltres() throws InterruptedException {
+    public void useFiltres() {
         clickOn(filterBtn, driver);
         moveToElement(electronicsBtn, driver);
         clickOn(laptopsAndPc, driver);
         clickOn(laptops, driver);
-
-        checkTextContainsOnPage(driver, "Ноутбуки и ультрабуки");
+        verifyTextOnElement("Ноутбуки и ультрабуки", titleAfterSearch, driver);
 
         clickOn(allFiltres, driver);
         sendTextToInput(priceMin, "100000", driver);

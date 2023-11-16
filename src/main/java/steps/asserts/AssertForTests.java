@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
@@ -30,9 +29,9 @@ public class AssertForTests {
         }
     }
 
-    public static void checkTextContainsOnPage(WebDriver driver, String expectedText)
-        throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
+    public static void checkTextContainsOnPage(WebDriver driver, String expectedText) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//body"))));
         assertTrue(driver.getPageSource().contains(expectedText));
     }
 
@@ -55,11 +54,16 @@ public class AssertForTests {
         assertEquals(driver.getWindowHandle(), window1);
     }
 
-    public static void verifyTextOnElement(String expectedText, By element, WebDriver driver)
-        throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+    public static void verifyTextOnElement(String expectedText, By element, WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
+        assertTrue(driver.findElement(element).getText().contains(expectedText));
+    }
+
+    public static void verifyPriceOnElement(String expectedText, By element, WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
+        wait.until(ExpectedConditions.textToBe(element, expectedText));
         assertTrue(driver.findElement(element).getText().contains(expectedText));
     }
 
@@ -78,6 +82,6 @@ public class AssertForTests {
     }
 
     public static void equalityOfAmount(String c, String c1) {
-        assertEquals(c,c1);
+        assertEquals(c, c1);
     }
 }
